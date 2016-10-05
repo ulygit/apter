@@ -7,7 +7,7 @@ setup(
     name=APP_NAME,
     version='0.1',
     description='A sweet project configuration package',
-    url='https://github.com/ulygit/confit',
+    url='https://github.com/ulygit/apter',
     author='U. Melendez',
     author_email='confitpy@bfjournal.com',
     packages=['apter'],
