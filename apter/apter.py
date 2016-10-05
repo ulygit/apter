@@ -7,9 +7,9 @@ import yaml
 from parse import *
 
 
-class Confit(argparse.Namespace):
+class Apter(argparse.Namespace):
     def __init__(self, kvs, root=None, **kwargs):
-        super(Confit, self).__init__(**kwargs)
+        super(Apter, self).__init__(**kwargs)
         self.kvs = kvs
         self.root = kvs if root is None else root
         self.add_env_config()
@@ -19,19 +19,19 @@ class Confit(argparse.Namespace):
 
     @staticmethod
     def load_yaml(stream):
-        return Confit(yaml.load(stream))
+        return Apter(yaml.load(stream))
 
     def __getitem__(self, item):
         value = self.kvs[item]
         if isinstance(value, (str, unicode)):
             return self.__resolve__(self.kvs[item])
         elif isinstance(value, Mapping):
-            return Confit(value, self.root)
+            return Apter(value, self.root)
         elif isinstance(value, Sequence):
             new_sequence = []
             for seq_item in value:
                 if isinstance(seq_item, Mapping):
-                    new_sequence.append(Confit(seq_item, self.root))
+                    new_sequence.append(Apter(seq_item, self.root))
                 else:
                     new_sequence.append(self.__resolve__(seq_item))
             return new_sequence
@@ -41,12 +41,12 @@ class Confit(argparse.Namespace):
         return self[item]
 
     def __setitem__(self, key, value):
-        super(Confit, self).__setattr__(key, value)
+        super(Apter, self).__setattr__(key, value)
         if self.kvs is not None and key in self.kvs:
             self.kvs[key] = value
 
     def __setattr__(self, key, value):
-        super(Confit, self).__setattr__(key, value)
+        super(Apter, self).__setattr__(key, value)
         if self.kvs is not None and key in self.kvs:
             self.kvs[key] = value
 

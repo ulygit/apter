@@ -3,11 +3,11 @@ from StringIO import StringIO
 
 import yaml
 
-from confit import Confit
+from apter import Apter
 
 
 def create(config):
-    return Confit(yaml.safe_load(StringIO(config)))
+    return Apter(yaml.safe_load(StringIO(config)))
 
 
 def test_dict_access():
@@ -158,7 +158,7 @@ def test_merge_preserves_defaults():
     env: user
     """)
     default_config.overlay(user_config)
-    assert default_config.unmasked == True
+    assert default_config.unmasked is True
 
 
 def test_merge_map():
