@@ -91,3 +91,6 @@ ENV/
 .ropeproject
 
 .idea/
+
+# release log
+release.log.utf-8.tmp
