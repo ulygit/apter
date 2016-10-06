@@ -10,6 +10,7 @@ setup(
     url='https://github.com/ulygit/apter',
     author='U. Melendez',
     author_email='confitpy@bfjournal.com',
+    license='MIT',
     packages=['apter'],
     py_modules=['apter'],
     install_requires=[
