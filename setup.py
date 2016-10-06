@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 APP_NAME = 'apter'
 
@@ -11,7 +11,7 @@ setup(
     author='U. Melendez',
     author_email='confitpy@bfjournal.com',
     license='MIT',
-    packages=['apter'],
+    packages=find_packages(exclude=("test",)),
     py_modules=['apter'],
     install_requires=[
         'parse',
