@@ -11,7 +11,7 @@ setup(
     author='U. Melendez',
     author_email='confitpy@bfjournal.com',
     license='MIT',
-    packages=find_packages(exclude=["test"]),
+    packages=find_packages(exclude=['test']),
     py_modules=['apter'],
     install_requires=[
         'parse',
