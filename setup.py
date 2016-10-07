@@ -11,7 +11,7 @@ setup(
     author='U. Melendez',
     author_email='confitpy@bfjournal.com',
     license='MIT',
-    packages=find_packages(where='/Users/grant/PycharmProjects/apter', exclude=['*test*']),
+    packages=[APP_NAME],
     install_requires=[
         'parse',
     ],
