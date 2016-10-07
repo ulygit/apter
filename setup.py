@@ -9,9 +9,10 @@ setup(
     description='A sweet project configuration package',
     url='https://github.com/ulygit/apter',
     author='U. Melendez',
-    author_email='confitpy@bfjournal.com',
+    author_email='apterpy@bfjournal.com',
     license='MIT',
-    packages=[APP_NAME],
+    packages=find_packages(exclude=['test']),
+    py_modules=['apter'],
     install_requires=[
         'parse',
     ],
