@@ -51,7 +51,7 @@ Releaser(
     SetFutureVersion,  # Writes incremented version, now with 'dev' suffix
     GitCommitVersionNumber('future_version',
                            msg='Bump version to {0} after release'),
-    ErrorStep,  # You can use this step while testing - it causes a rollback.
+    # ErrorStep,  # You can use this step while testing - it causes a rollback.
     GitPush,  # Cannot be undone. If successful, previous steps won't roll back
     GitPushTags,
     Warn("Do not forget to upload the documentation!"),
