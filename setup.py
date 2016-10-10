@@ -5,7 +5,7 @@ APP_NAME = 'apter'
 # noinspection SpellCheckingInspection
 setup(
     name=APP_NAME,
-    version='0.3',
+    version='0.4',
     description='A sweet project configuration package',
     url='https://github.com/ulygit/apter',
     author='U. Melendez',
