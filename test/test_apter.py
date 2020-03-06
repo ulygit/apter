@@ -1,5 +1,5 @@
 import socket
-from StringIO import StringIO
+from io import StringIO
 
 import yaml
 
