@@ -1,6 +1,6 @@
 import argparse
 import socket
-from collections import Mapping, Sequence
+from collections.abc import Mapping, Sequence
 from copy import deepcopy
 
 import yaml
@@ -23,7 +23,7 @@ class Apter(argparse.Namespace):
 
     def __getitem__(self, item):
         value = self.kvs[item]
-        if isinstance(value, (str, unicode)):
+        if isinstance(value, str):
             return self.__resolve__(self.kvs[item])
         elif isinstance(value, Mapping):
             return Apter(value, self.root)
@@ -83,7 +83,7 @@ class Apter(argparse.Namespace):
         return value
 
     def overlay(self, config):
-        for key, value in config.kvs.iteritems():
+        for key, value in config.kvs.items():
             self.__recursiveset__(key, value)
 
     def __recursiveset__(self, key, value):
@@ -105,7 +105,7 @@ class Apter(argparse.Namespace):
         return self.__resolve__(str(self))
 
     def iteritems(self):
-        return self.kvs.iteritems()
+        return iter(self.kvs.items())
 
     def __str__(self):
         return yaml.safe_dump(self.kvs, default_flow_style=False)
