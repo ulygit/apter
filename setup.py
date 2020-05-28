@@ -6,7 +6,7 @@ APP_NAME = 'apter'
 setup(
     name=APP_NAME,
     # version managed by release script
-    version='0.8',
+    version='0.9.dev1',
     description='A sweet project configuration package',
     url='https://github.com/ulygit/apter',
     author='U. Melendez',
