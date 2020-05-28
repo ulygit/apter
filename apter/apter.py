@@ -19,7 +19,7 @@ class Apter(argparse.Namespace):
 
     @staticmethod
     def load_yaml(stream):
-        return Apter(yaml.load(stream))
+        return Apter(yaml.load(stream, Loader=yaml.SafeLoader))
 
     def __getitem__(self, item):
         value = self.kvs[item]
