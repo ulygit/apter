@@ -12,7 +12,7 @@ setup(
     author='U. Melendez',
     author_email='apterpy@bfjournal.com',
     license='MIT',
-    packages=find_packages(exclude=['test']),
+    packages=find_packages(exclude=["test"]),
     py_modules=['apter'],
     setup_requires=[
         'pytest-runner'
