@@ -3,7 +3,7 @@ from io import StringIO
 
 import yaml
 
-from apter import Apter
+from src.apter import Apter
 
 
 def create(config):
@@ -225,10 +225,10 @@ def test_merge_complex():
         browser_screencap: ${browser.screencap}
     """)
     user_config = create("""
-    env: test
+    env: tests
     logging:
         file:
-            path: ${working_dir}test.log
+            path: ${working_dir}tests.log
         console:
             level: debug
     banking:
@@ -237,8 +237,8 @@ def test_merge_complex():
         capture: ~u ^http://localhost:8888/app/getJsonData.*task=transactions
     """)
     default_config.overlay(user_config)
-    assert default_config.env == 'test'
-    assert default_config.logging.file.path == './test.log'
+    assert default_config.env == 'tests'
+    assert default_config.logging.file.path == './tests.log'
     assert default_config.logging.console.level == 'debug'
     assert default_config.logging.console.format is not None
 
