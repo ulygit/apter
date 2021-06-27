@@ -231,7 +231,7 @@ def test_merge_complex():
             path: ${working_dir}tests.log
         console:
             level: debug
-    banking:
+    mint:
         login_url: https://localhost:8888/login.event
         user_id: user
         capture: ~u ^http://localhost:8888/app/getJsonData.*task=transactions
