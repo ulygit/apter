@@ -104,7 +104,7 @@ class Apter(argparse.Namespace):
     def to_resolved_str(self):
         return self.__resolve__(str(self))
 
-    def iteritems(self):
+    def items(self):
         return iter(self.kvs.items())
 
     def __str__(self):
