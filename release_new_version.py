@@ -1,12 +1,8 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 """Script that releases a new version of the software."""
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
-
-from releaser import Releaser  # easy_install -UZ releaser
+from releaser import Releaser
 from releaser.git_steps import *
 from releaser.steps import *
 
@@ -16,7 +12,7 @@ config = dict(
     github_repository='apter',  # TODO autodiscover this too
     branch='master',  # Only release new versions in this git branch
     changes_file='CHANGES.rst',
-    version_file='setup.py',  # Read and write version number on this file
+    version_file='setup.cfg',  # Read and write version number on this file
     version_keyword='version',    # Part of the variable name in that file
     log_file='release.log.utf-8.tmp',
     verbosity='info',  # debug | info | warn | error
@@ -28,25 +24,23 @@ Releaser(
     config,
 
     # ==================  Before releasing, do some checks  ===================
-    Shell('python setup.py test'),  # First of all ensure tests pass
+    Shell('pytest'),  # First of all ensure tests pass
     # CheckRstFiles,  # Documentation: recursively verify ALL .rst files, or:
     # CheckRstFiles('README.rst', 'CHANGES.rst', 'LICENSE.rst'),  # just a few.
-    # TODO IMPLEMENT CompileAndVerifyTranslations,
     EnsureGitClean,   # There are no uncommitted changes in tracked files.
     EnsureGitBranch,  # I must be in the branch specified in config
     InteractivelyEnsureChangesDocumented,     # Did you update CHANGES.rst?
     # Shell('./build_sphinx_documentation.sh'),  # You can write it easily
-    InteractivelyApproveDistribution,  # Make temp sdist, let user verify it
-    InteractivelyApproveWheel,         # Let user verify a temp wheel
     # CheckTravis,  # We run this late, so travis-ci has more time to build
 
     # ======================  All checks pass. RELEASE!  ======================
     SetVersionNumberInteractively,  # Ask for version and write to source code
+    Shell("python -m build --sdist --wheel ."),  # Build source distribution with setuptools
+    InteractivelyApprovePackage,  # Ask user to manually verify wheel content
     GitCommitVersionNumber,
     GitTag,  # Locally tag the current commit with the new version number
-    # PypiRegister,           # Create the new release at https://pypi.python.org
-    PypiUpload,   # Make and upload a source .tar.gz to https://pypi.python.org
-    PypiUploadWheel,  # Make and upload source wheel to https://pypi.python.org
+    TwineUploadSource,  # Upload a source .tar.gz to https://pypi.org with Twine
+    TwineUploadWheel,  # Upload wheel to https://pypi.org with Twine
 
     # ===========  Post-release: set development version and push  ============
     SetFutureVersion,  # Writes incremented version, now with 'dev' suffix
