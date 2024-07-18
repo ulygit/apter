@@ -35,7 +35,7 @@ Releaser(
 
     # ======================  All checks pass. RELEASE!  ======================
     SetVersionNumberInteractively,  # Ask for version and write to source code
-    Shell("python -m build --sdist --wheel ."),  # Build source distribution with setuptools
+    Shell("python -m build"),  # Build source distribution with setuptools
     InteractivelyApprovePackage,  # Ask user to manually verify wheel content
     GitCommitVersionNumber,
     GitTag,  # Locally tag the current commit with the new version number
